@@ -3,7 +3,7 @@
 ## Demonstração 📸
 
 <div align="center" >
-  <img src="https://p4.wallpaperbetter.com/wallpaper/935/690/342/c-plus-plus-c-code-wallpaper-preview.jpg" alt="C++ logomarca" height="400">
+  <img src="https://p4.wallpaperbetter.com/wallpaper/935/690/342/c-plus-plus-c-code-wallpaper-preview.jpg" alt="C++ logomarca" height="350">
 </div>
 
 ---
