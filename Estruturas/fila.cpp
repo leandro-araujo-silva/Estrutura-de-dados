@@ -56,8 +56,30 @@ void fila::inserir(TipoItem item)
 
 TipoItem fila::remover()
 {
+  if(estavazio()) {
+    cout << "A fila esta vazia!\n";
+    cout << "Nenhum elemento foi removido!\n";
+    return 0;
+  } else {
+    primeiro++;
+    return estrutura[(primeiro-1) % max_itens];
+  }
 }
 
 void fila::imprimir()
 {
+  cout << "Fila: [ ";
+  for (int i=primeiro; i<ultimo; i++) {
+    cout << estrutura[i % max_itens] << " ";
+  }
+  cout << "]\n";
+}
+
+int main() {
+  fila fila1;
+  int opcao;
+  TipoItem item;
+  cout << "Programa gerador de filas:\n";
+
+  return 0;
 }
