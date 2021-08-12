@@ -34,7 +34,7 @@ int main() {
   cout << "Digite o seu sexo (f/m): ";
   cin >> pessoa1.sexo;
 
-  cout << "Digite sua data de nascimento no formato dd mm aa: \n";
+  cout << "Digite sua data de nascimento no formato dd mm aa:" << endl;
   cin >> pessoa1.dataNas.dia;
   cin >> pessoa1.dataNas.mes;
   cin >> pessoa1.dataNas.ano;
