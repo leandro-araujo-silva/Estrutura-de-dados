@@ -26,11 +26,31 @@ void imprimirEletronico(Eletronico e) {
 Eletronico lerEletronico(){
   Eletronico e;
   
-  cout << 
+  cout << "Digite o tipo do eletronico: ";
+  fgets(e.tipo, 100, stdin);
+  cout << "Marca: ";
+  fgets(e.marca, 50, stdin);
+  cout << "Modelo: ";
+  fgets(e.modelo, 25, stdin);
+  cout << "Eficiencia energetica: ";
+  cin >> e.energia;
+  setbuf(stdin, NULL);
+  cout << "Descricao: ";
+  fgets(e.descricao, 500, stdin);
+  cout << "Quantidade: ";
+  cin >> e.codigo;
+  cout << "Codigo: ";
+  cin >> e.codigo;
+
+  return e;
 }
 
 int main() {
-  
+  Eletronico ele;
+
+  ele = lerEletronico();
+  cout << endl;
+  imprimirEletronico(ele);
 
   return 0;
 }
