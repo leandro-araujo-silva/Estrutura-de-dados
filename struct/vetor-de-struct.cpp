@@ -12,7 +12,7 @@ typedef struct
 {
   DataNas dataNas;
   int idade;
-  char sexo;
+  char sexo; 
   char nome[100];
 } Pessoa;
 
