@@ -127,53 +127,14 @@ void imprimir(No *no)
 
 int main()
 {
-  int opcao, valor, anterior;
+  int valor;
   No *lista = NULL;
+      
+  while (scanf("%d", &valor)!=EOF) {
+    inserir_no_inicio(&lista, valor);
+  }  
 
-  do
-  {
-    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Imprimir\n");
-    scanf("%d", &opcao);
-
-    switch (opcao)
-    {
-
-    case 1:
-      printf("Digite um valor: ");
-      scanf("%d", &valor);
-      inserir_no_inicio(&lista, valor);
-
-      break;
-
-    case 2:
-      printf("Digite um valor: ");
-      scanf("%d", &valor);
-      inserir_no_fim(&lista, valor);
-      break;
-
-    case 3:
-      printf("Digite um valor e o valor de referencia: ");
-      scanf("%d%d", &valor, &anterior);
-      inserir_no_meio(&lista, valor, anterior);
-      break;
-
-    case 4:
-      printf("Digite um valor:");
-      scanf("%d", &valor);
-      inserir_ordenado(&lista, valor);
-      break;
-
-    case 5:
-      imprimir(lista);
-      break;
-
-    default:
-      if (opcao != 0)
-      {
-        printf("Opcao invalida!\n");
-      }
-    }
-  } while (opcao != 0);
-
+  imprimir(lista);
+  
   return 0;
 }
