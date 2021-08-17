@@ -100,6 +100,29 @@ void inserir_no_meio(Lista *lista, int num, int ant)
   }
 }
 
+// Procedimento para inserir ordenado
+void inserir_ordenado(Lista *lista, int num) {
+  No *novo = malloc(sizeof(No));
+
+  if(novo) {
+    novo->valor = num;
+    if(lista->inicio == NULL){
+      novo->proximo = NULL;
+      lista->inicio = novo;
+    } else if(novo->valor < lista->inicio->valor){
+      novo->proximo = lista->inicio;
+      lista->inicio = novo;
+    } else {
+      aux = lista->inicio;
+      while(aux->proximo && novo->valor > aux->proximo->valor) {
+        aux = aux->proximo;
+      }
+      novo->proximo = aux->proximo;
+      aux->proximo = novo;
+    }
+  }
+}
+
 void imprimir(Lista lista)
 {
   No *no = lista.inicio;
