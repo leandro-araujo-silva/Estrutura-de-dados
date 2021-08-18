@@ -102,7 +102,7 @@ void inserir_no_meio(Lista *lista, int num, int ant)
 
 // Procedimento para inserir ordenado
 void inserir_ordenado(Lista *lista, int num) {
-  No *novo = malloc(sizeof(No));
+  No *aux, *novo = malloc(sizeof(No));
 
   if(novo) {
     novo->valor = num;
@@ -120,6 +120,8 @@ void inserir_ordenado(Lista *lista, int num) {
       novo->proximo = aux->proximo;
       aux->proximo = novo;
     }
+  } else {
+    printf("Erro ao alocar memoria!\n");
   }
 }
 
@@ -144,7 +146,7 @@ int main()
 
   do
   {
-    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - Imprimir\n");
+    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Imprimir\n");
     scanf("%d", &opcao);
 
     switch (opcao)
@@ -170,6 +172,12 @@ int main()
       break;
 
     case 4:
+      printf("Digite um valor: ");
+      scanf("%d", &valor);
+      inserir_ordenado(&lista, valor);
+      break;
+
+    case 5:
       imprimir(lista);
       break;
 

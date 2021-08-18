@@ -6,8 +6,7 @@ void imprimir(int c[], int n) {
   }
 }
 
-void ordenacao(int C[], int n)
-{
+void ordenacaoA(int C[], int n) {
   int aux;
 
   for (int contador = 1; contador < n; contador++)
@@ -26,9 +25,30 @@ void ordenacao(int C[], int n)
   imprimir(C, n);
 }
 
+void ordenacao(int C[], int n)
+{
+  int aux;
+
+  for (int contador = 1; contador < n; contador++)
+  {
+    for (int t = 0; t < n; t++)
+    {
+      if (C[t] > C[t + 1])
+      {
+        aux = C[t];
+        C[t] = C[t + 1];
+        C[t + 1] = aux;
+      }
+    }
+  }
+
+  ordenacaoA(C, n);
+  //imprimir(C, n);
+}
+
 void intersecao(int A[], int B[], int n)
 {
-  int nao = -10000;
+  int nao;
   int cont = 0;
   int C[20];
 
