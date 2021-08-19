@@ -113,6 +113,28 @@ void inserir_ordenado(No **lista, int num) {
   }
 }
 
+// Procedimento para remover nó da lista
+No* remover(No **lista, int num) {
+  No *aux, *remover = NULL;
+
+  if(*lista) {
+    if((*lista)->valor == num) {
+      remover = *lista;
+      *lista = remover->proximo;
+    } else {
+      aux = *lista;
+      while(aux->proximo && aux->proximo->valor != num) {
+        aux = aux->proximo;
+      }
+      if(aux->proximo) {
+        remover = aux->proximo;
+        aux->proximo = remover->proximo;
+      }
+    }
+  }
+  return remover;
+}
+
 // Imprimindo lista
 void imprimir(No *no)
 {
@@ -128,11 +150,11 @@ void imprimir(No *no)
 int main()
 {
   int opcao, valor, anterior;
-  No *lista = NULL;
+  No *removido, *lista = NULL;
 
   do
   {
-    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Imprimir\n");
+    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Remover\n\t6 - Imprimir\n");
     scanf("%d", &opcao);
 
     switch (opcao)
@@ -164,6 +186,18 @@ int main()
       break;
 
     case 5:
+      printf("Digite um valor a ser removido: ");
+      scanf("%d", &valor);
+      removido = remover(&lista, valor);
+      if (removido) {
+        printf("Elemento removido: %d\n", removido->valor);
+        free(removido);
+      } else {
+        printf("Elemento inexistente!\n");
+      }
+      break;
+
+    case 6:
       imprimir(lista);
       break;
 

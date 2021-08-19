@@ -7,13 +7,15 @@ typedef struct no
   struct no *proximo;
 } No;
 
-typedef struct {
+typedef struct
+{
   No *inicio;
   int tam;
-}Lista;
+} Lista;
 
-void criar_lista(Lista *lista) {
-  lista->inicio=NULL;
+void criar_lista(Lista *lista)
+{
+  lista->inicio = NULL;
   lista->tam = 0;
 }
 
@@ -101,28 +103,71 @@ void inserir_no_meio(Lista *lista, int num, int ant)
 }
 
 // Procedimento para inserir ordenado
-void inserir_ordenado(Lista *lista, int num) {
+void inserir_ordenado(Lista *lista, int num)
+{
   No *aux, *novo = malloc(sizeof(No));
 
-  if(novo) {
+  if (novo)
+  {
     novo->valor = num;
-    if(lista->inicio == NULL){
+    if (lista->inicio == NULL)
+    {
       novo->proximo = NULL;
       lista->inicio = novo;
-    } else if(novo->valor < lista->inicio->valor){
+    }
+    else if (novo->valor < lista->inicio->valor)
+    {
       novo->proximo = lista->inicio;
       lista->inicio = novo;
-    } else {
+    }
+    else
+    {
       aux = lista->inicio;
-      while(aux->proximo && novo->valor > aux->proximo->valor) {
+      while (aux->proximo && novo->valor > aux->proximo->valor)
+      {
         aux = aux->proximo;
       }
       novo->proximo = aux->proximo;
       aux->proximo = novo;
     }
-  } else {
+    lista->tam++;
+  }
+  else
+  {
     printf("Erro ao alocar memoria!\n");
   }
+}
+
+// Procedimento para remover um elemento
+No *remover(Lista *lista, int num)
+{
+  No *aux, *remover = NULL;
+
+  if (lista->inicio)
+  {
+    if (lista->inicio->valor == num)
+    {
+      remover = lista->inicio;
+      lista->inicio = remover->proximo;
+      lista->tam--;
+    }
+    else
+    {
+      aux = lista->inicio;
+      while (aux->proximo && aux->proximo->valor != num)
+      {
+        aux = aux->proximo;
+      }
+      if (aux->proximo)
+      {
+        remover = aux->proximo;
+        aux->proximo = remover->proximo;
+        lista->tam--;
+      }
+    }
+  }
+
+  return remover;
 }
 
 void imprimir(Lista lista)
@@ -141,12 +186,13 @@ int main()
 {
   int opcao, valor, anterior;
   Lista lista;
+  No *removido;
 
   criar_lista(&lista);
 
   do
   {
-    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Imprimir\n");
+    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Remover\n\t6 - Imprimir\n");
     scanf("%d", &opcao);
 
     switch (opcao)
@@ -178,6 +224,21 @@ int main()
       break;
 
     case 5:
+      printf("Digite um valor a ser removido: ");
+      scanf("%d", &valor);
+      removido = remover(&lista, valor);
+      if (removido)
+      {
+        printf("Elemento removido: %d\n", removido->valor);
+        free(removido);
+      }
+      else
+      {
+        printf("Elemento inexistente!\n");
+      }
+      break;
+
+    case 6:
       imprimir(lista);
       break;
 
