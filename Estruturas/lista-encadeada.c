@@ -87,52 +87,85 @@ void inserir_no_meio(No **lista, int num, int ant)
   }
 }
 
-void inserir_ordenado(No **lista, int num) {
+void inserir_ordenado(No **lista, int num)
+{
   No *aux, *novo = malloc(sizeof(No));
 
-  if(novo) {
+  if (novo)
+  {
     novo->valor = num;
     // A lista está vazia?
-    if(*lista == NULL){
+    if (*lista == NULL)
+    {
       novo->proximo = NULL;
       *lista = novo;
     } // É o menor?
-    else if(novo->valor < (*lista)->valor) {
+    else if (novo->valor < (*lista)->valor)
+    {
       novo->proximo = *lista;
       *lista = novo;
-    } else {
+    }
+    else
+    {
       aux = *lista;
-      while(aux->proximo && novo->valor > aux->proximo->valor) {
+      while (aux->proximo && novo->valor > aux->proximo->valor)
+      {
         aux = aux->proximo;
       }
       novo->proximo = aux->proximo;
       aux->proximo = novo;
     }
-  } else {
+  }
+  else
+  {
     printf("Erro ao alocar memoria!\n");
   }
 }
 
 // Procedimento para remover nó da lista
-No* remover(No **lista, int num) {
+No *remover(No **lista, int num)
+{
   No *aux, *remover = NULL;
 
-  if(*lista) {
-    if((*lista)->valor == num) {
+  if (*lista)
+  {
+    if ((*lista)->valor == num)
+    {
       remover = *lista;
       *lista = remover->proximo;
-    } else {
+    }
+    else
+    {
       aux = *lista;
-      while(aux->proximo && aux->proximo->valor != num) {
+      while (aux->proximo && aux->proximo->valor != num)
+      {
         aux = aux->proximo;
       }
-      if(aux->proximo) {
+      if (aux->proximo)
+      {
         remover = aux->proximo;
         aux->proximo = remover->proximo;
       }
     }
   }
   return remover;
+}
+
+// Procedimento para buscar elemento
+No *buscar(No **lista, int num)
+{
+  No *aux, *no = NULL;
+
+  aux = *lista;
+  while (aux && aux->valor != num)
+  {
+    aux = aux->proximo;
+  }
+  if (aux)
+  {
+    no = aux;
+  }
+  return no;
 }
 
 // Imprimindo lista
@@ -150,11 +183,11 @@ void imprimir(No *no)
 int main()
 {
   int opcao, valor, anterior;
-  No *removido, *lista = NULL;
+  No *removido, *buscado, *lista = NULL;
 
   do
   {
-    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Remover\n\t6 - Imprimir\n");
+    printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - InserirO\n\t5 - Remover\n\t6 - Imprimir\n\t7 - Buscar elemento\n");
     scanf("%d", &opcao);
 
     switch (opcao)
@@ -189,16 +222,30 @@ int main()
       printf("Digite um valor a ser removido: ");
       scanf("%d", &valor);
       removido = remover(&lista, valor);
-      if (removido) {
+      if (removido)
+      {
         printf("Elemento removido: %d\n", removido->valor);
         free(removido);
-      } else {
+      }
+      else
+      {
         printf("Elemento inexistente!\n");
       }
       break;
 
     case 6:
       imprimir(lista);
+      break;
+
+    case 7:
+      printf("Digite um valor a ser buscado: ");
+      scanf("%d", &valor);
+      buscado = buscar(&lista, valor);
+      if(buscado) {
+        printf("Elemento encontrado: %d\n", buscado->valor);
+      } else {
+        printf("Elemento nao encontrado!\n");
+      }
       break;
 
     default:
