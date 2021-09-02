@@ -16,6 +16,7 @@ Tipos de estruturas e exercícios
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
+- [C]
 - [C++]
 
 ---
